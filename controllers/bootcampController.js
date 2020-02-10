@@ -22,7 +22,7 @@ exports.getBootcamps = async (req, res, next) => {
 // @access    Public
 exports.getBootcamp = async (req, res, next) => {
     try {
-        const bootcamps = await Bootcamp.find();
+        const bootcamp = await Bootcamp.findById(req.params.id);
 
         if(!bootcamp) {
             return res.status(400).json({ success: false });
@@ -30,10 +30,10 @@ exports.getBootcamp = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            data: bootcamps
+            data: bootcamp
         });
     } catch (err) {
-        res.status(400).json({ success: false });
+        next(err);
     }
 }
 
