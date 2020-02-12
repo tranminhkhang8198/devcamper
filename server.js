@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 const fileupload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
+const mongoSanitize = require('express-mongo-sanitize');
 
 const errorHandler = require('./middlewares/error');
 const connectDB = require('./config/db');
@@ -34,6 +35,9 @@ app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
+
+// Sanitize data
+app.use(mongoSanitize());
 
 // File uploading
 app.use(fileupload());
