@@ -2,7 +2,8 @@ const express = require('express');
 
 const {
     getReviews,
-    getReview
+    getReview,
+    addReview
 } = require('../controllers/reviewController');
 
 const advancedResults = require('../middlewares/advancedResults');
@@ -21,6 +22,7 @@ router
         }),
         getReviews
     )
+    .post(protect, authorize('user', 'admin'), addReview);
 
 router
     .route('/:id')
