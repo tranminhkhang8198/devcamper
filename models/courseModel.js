@@ -76,7 +76,7 @@ courseSchema.post('save', function () {
 // Call getAverageCost before remove
 courseSchema.pre('remove', function () {
     this.constructor.getAverageCost(this.bootcamp);
-})
+});
 
 const Course = mongoose.model('Course', courseSchema);
 
